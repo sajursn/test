@@ -1,0 +1,14 @@
+
+oauth2:
+  server: 
+     uri: ${OAUTH_SERVER_URI:http://localhost:7777/oauth/}
+  clients:
+     clientDetails:
+        -
+           clientId: user-service
+           clientSecret: 1234
+        -
+           clientId: comment-service
+           clientSecret: 1234
+           
+  

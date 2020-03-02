@@ -1,0 +1,17 @@
+
+security:
+ 
+  oauth2:
+    resource:
+      jwt:
+        keyValue:
+          -----BEGIN PUBLIC KEY-----
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAldE+Oh9i13ldf8vUeK21
+          a1ymLXSST/fNAOYd2SVLEFOzIFvPDBYw1VpckPzYyyzI5msz9HjyPGbWEDuHgNAv
+          jH5Of40vl+XoM7sBaZfpT6jiFBWjUehwkUlarB/4nkxc40Vk5B8cOwKvZgmByeRi
+          Hu3tMkRu59mxEsn3WD9gnxYyNLL127JFttPJ5TMrrJU5M+FqdhJi0KTAbjzGr9Dr
+          9DLdDvlIwrY2o5Vk1c5C8hYumwl7PXaFXyD1Dj4+Cf92u4X0K48CFWRBwKVUTNWT
+          Bo88bVJXb1k1nmOJwhODA97p6qI6HyOq0x9o2r52X+6mShYN/WsrlwR+vhct6PMp
+          wwIDAQAB
+          -----END PUBLIC KEY-----
+        resourceId: test

@@ -1,0 +1,63 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: auth-client-service
+spec:
+  selector:
+    # Should match the template.metadata.labels.app value
+    app: oauth-client
+  ports:
+    - protocol: "TCP"
+      # Port accessible inside cluster
+      port: 80
+      # Port to forward to inside the pod
+      targetPort: 7004
+      # Port accessible outside cluster
+      nodePort: 30003
+      name: http
+  type: NodePort
+
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oauth-client-deployment
+spec:
+  selector:
+    matchLabels:
+        app: oauth-client
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: oauth-client
+    spec:
+      containers:
+        - name: oauth-client
+          image: sajursn/oauth-client:one
+          #same port as mentioned in applciations application.properties
+          ports:
+            - containerPort: 7004
+          env:
+            - name: oauth2.server.uri
+              value: http://${AUTH-SERVER-SERVICE_SERVICE_HOST}:80/oauth/
+          readinessProbe:
+              httpGet:
+                path: /actuator/health
+                port: 7004
+              initialDelaySeconds: 10
+              timeoutSeconds: 2
+              periodSeconds: 3
+              failureThreshold: 1
+          livenessProbe:
+              httpGet:
+                path: /actuator/health
+                port: 7004
+              initialDelaySeconds: 20
+              timeoutSeconds: 2
+              periodSeconds: 8
+              failureThreshold: 1
+              
